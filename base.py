@@ -2,6 +2,7 @@
 from bit import Bit
 import pygame
 import argparse
+import random
 
 # Color setup
 BACKGROUND = ( 44,  62,  80)
@@ -22,11 +23,20 @@ pygame.display.set_caption("Cellular Automata | Conway's Game of Life")
 
 class World:
 
-    def placeCritter(self, grid):
-        pos = pygame.mouse.get_pos()
-        column = pos[0] // (CELLSIZE + MARGIN)
-        row = pos[1] // (CELLSIZE + MARGIN)
-        grid[row][column] = 1
+    def placeCritter(self, number, grid):
+        #pos = pygame.mouse.get_pos()
+        #column = pos[0] // (CELLSIZE + MARGIN)
+        #row = pos[1] // (CELLSIZE + MARGIN)
+        #grid[row][column] = 1
+        while number > 0:
+            spawned = False
+            while spawned == False:
+                x = random.randint(0, HEIGHT - 1)
+                y = random.randint(0, WIDTH - 1)
+                if grid[x][y] == 0:
+                    spawned = True
+            grid[x][y] = 1
+            number -= 1
 
     def updateWorld(self, grid):
         for y in range(0, HEIGHT):
@@ -60,6 +70,7 @@ def main(args):
     while not world_created:
         screen.fill(BACKGROUND)
         new_world = world.createWorld()
+        world.placeCritter(200, new_world)
         world_created = True
 
     running = True
@@ -68,8 +79,9 @@ def main(args):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                world.placeCritter(new_world)
-                world.updateWorld(new_world)
+                #world.placeCritter(new_world)
+                #world.updateWorld(new_world)
+                None
 
         if ticks > 0:
             for bit in Bit.instances:
