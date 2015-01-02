@@ -78,6 +78,8 @@ def main(args):
 
         if sim_start and ticks > 0:
             for bit in Bit.instances:
+                bit.growth_calculate(new_world)
+            for bit in Bit.instances:
                 bit.growth(new_world)
             world.updateWorld(new_world)
             ticks -= 1

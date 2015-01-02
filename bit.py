@@ -9,6 +9,7 @@ class Bit:
         Bit.instances.append(self)
         self.x = x
         self.y = y
+        self.growth_value = 0
 
     def check_adjacent(self, grid):
         results = 0
@@ -25,18 +26,20 @@ class Bit:
                     results += 1
         return results
 
+    def growth_calculate(self, grid):
+        self.growth_value = self.check_adjacent(grid)
+
     def growth(self, grid):
-        growth_value = self.check_adjacent(grid)
         if grid[self.x][self.y] == 1:
-            if growth_value < 2:
+            if self.growth_value < 2:
                 grid[self.x][self.y] = 0
-            elif growth_value > 3:
-                grid[self.x][self.y] = 0
+            elif self.growth_value > 3:
+                 grid[self.x][self.y] = 0
             else:
                 pass
         elif grid[self.x][self.y] == 0:
-            if growth_value == 3:
-                grid[self.x][self.y] = 1
+            if self.growth_value == 3:
+                 grid[self.x][self.y] = 1
             else:
                 pass
         
