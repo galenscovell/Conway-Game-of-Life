@@ -23,20 +23,12 @@ pygame.display.set_caption("Cellular Automata | Conway's Game of Life")
 
 class World:
 
-    def placeCritter(self, number, grid):
-        #pos = pygame.mouse.get_pos()
-        #column = pos[0] // (CELLSIZE + MARGIN)
-        #row = pos[1] // (CELLSIZE + MARGIN)
-        #grid[row][column] = 1
-        while number > 0:
-            spawned = False
-            while spawned == False:
-                x = random.randint(0, HEIGHT - 1)
-                y = random.randint(0, WIDTH - 1)
-                if grid[x][y] == 0:
-                    spawned = True
-            grid[x][y] = 1
-            number -= 1
+    def placeCritter(self, grid):
+        pos = pygame.mouse.get_pos()
+        column = pos[0] // (CELLSIZE + MARGIN)
+        row = pos[1] // (CELLSIZE + MARGIN)
+        grid[row][column] = 1
+        print(row, column)
 
     def updateWorld(self, grid):
         for y in range(0, HEIGHT):
@@ -64,26 +56,27 @@ def main(args):
 
     world = World()
     clock = pygame.time.Clock()
-    ticks = args.num_ticks
-
-    world_created = False
-    while not world_created:
-        screen.fill(BACKGROUND)
-        new_world = world.createWorld()
-        world.placeCritter(200, new_world)
-        world_created = True
 
     running = True
+    sim_start = False
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                #world.placeCritter(new_world)
-                #world.updateWorld(new_world)
-                None
+                world.placeCritter(new_world)
+                world.updateWorld(new_world)
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    sim_start = True
+                elif event.key == pygame.K_SPACE:
+                    sim_start = False
+                    screen.fill(BACKGROUND)
+                    new_world = world.createWorld()
+                    world.updateWorld(new_world)
+                    ticks = args.num_ticks
 
-        if ticks > 0:
+        if sim_start and ticks > 0:
             for bit in Bit.instances:
                 bit.growth(new_world)
             world.updateWorld(new_world)
