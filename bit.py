@@ -42,3 +42,4 @@ class Bit:
                  grid[self.x][self.y] = 1
             else:
                 pass
+        
