@@ -10,9 +10,9 @@ Requirements:
 Usage: 
 <blockquote><b>python base.py</b> [ -h ] [ -t ] [ -fps ] </blockquote>
 
-Press [ spacebar ] at any time to create a new, blank grid.
-Use the [ mouse and click ] on any open grid space to place a 'bit'.
-Press [ enter ] to begin simulation for given amount of 'ticks'.
++ Press [ spacebar ] at any time to create a new, blank grid.
++ Use the [ mouse and click ] on any open grid space to place a 'bit'.
++ Press [ enter ] to begin simulation for given amount of 'ticks'.
 
 Arguments:
 *  -h, --help 
