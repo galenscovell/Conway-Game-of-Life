@@ -28,7 +28,6 @@ class World:
         column = pos[0] // (CELLSIZE + MARGIN)
         row = pos[1] // (CELLSIZE + MARGIN)
         grid[row][column] = 1
-        print(row, column)
 
     def updateWorld(self, grid):
         for y in range(0, HEIGHT):
