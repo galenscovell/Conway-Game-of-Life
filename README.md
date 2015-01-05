@@ -3,16 +3,16 @@ Conway-Game-of-Life
 
 Cellular Automata simulation implementation using Python and pyGame.
 
-Description:
+<b>Description:</b>
 <blockquote>The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</blockquote>
 
 <blockquote>The "game" is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves or, for advanced players, by creating patterns with particular properties.</blockquote>
 
-Requirements:
+<b>Requirements:</b>
 * Python 3.4
 * PyGame 1.9.2a0
 
-Usage: 
+<b>Usage:</b>
 <blockquote><b>python base.py</b> [ -h ] [ -t ] [ -fps ] </blockquote>
 
 + Press [ spacebar ] at any time to create a new, blank grid.
