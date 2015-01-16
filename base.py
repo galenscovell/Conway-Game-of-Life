@@ -22,13 +22,13 @@ pygame.display.set_caption("Cellular Automata | Conway's Game of Life")
 
 class World:
 
-    def placeCritter(self, grid):
+    def place_critter(self, grid):
         pos = pygame.mouse.get_pos()
         column = pos[0] // (CELLSIZE + MARGIN)
         row = pos[1] // (CELLSIZE + MARGIN)
         grid[row][column] = 1
 
-    def updateWorld(self, grid):
+    def update_world(self, grid):
         for y in range(0, HEIGHT):
             for x in range(0, WIDTH):
                 if grid[y][x] == 1:
@@ -40,7 +40,7 @@ class World:
                     (MARGIN + CELLSIZE) * y + MARGIN, 
                     CELLSIZE, CELLSIZE])
 
-    def createWorld(self):
+    def create_world(self):
         grid = []
         for y in range(0, HEIGHT):
             grid.append([])
@@ -62,16 +62,16 @@ def main(args):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                world.placeCritter(new_world)
-                world.updateWorld(new_world)
+                world.place_critter(new_world)
+                world.update_world(new_world)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     sim_start = True
                 elif event.key == pygame.K_SPACE:
                     sim_start = False
                     screen.fill(BACKGROUND)
-                    new_world = world.createWorld()
-                    world.updateWorld(new_world)
+                    new_world = world.create_world()
+                    world.update_world(new_world)
                     ticks = args.num_ticks
 
         if sim_start and ticks > 0:
@@ -79,7 +79,7 @@ def main(args):
                 bit.growth_calculate(new_world)
             for bit in Bit.instances:
                 bit.growth(new_world)
-            world.updateWorld(new_world)
+            world.update_world(new_world)
             ticks -= 1
 
         pygame.display.flip()
