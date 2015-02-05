@@ -5,7 +5,7 @@ import argparse
 
 # Color setup
 BACKGROUND = ( 44,  62,  80)
-WORLD      = ( 52,  73,  94)
+CANVAS     = ( 52,  73,  94)
 CRITTER    = (242, 202,  39)
 DEATH      = (155,  89, 182)
 
@@ -20,27 +20,31 @@ screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("Cellular Automata | Conway's Game of Life")
 
 
-class World:
+class Canvas:
+    """Bit simulation canvas."""
 
     def place_critter(self, grid):
+        """User input to select beginning bit locations."""
         pos = pygame.mouse.get_pos()
         column = pos[0] // (CELLSIZE + MARGIN)
         row = pos[1] // (CELLSIZE + MARGIN)
         grid[row][column] = 1
 
-    def update_world(self, grid):
+    def update_canvas(self, grid):
+        """Redraw canvas after every tick."""
         for y in range(0, HEIGHT):
             for x in range(0, WIDTH):
                 if grid[y][x] == 1:
                     color = CRITTER
                 else:
-                    color = WORLD
+                    color = CANVAS
                 pygame.draw.rect(screen, color, 
                     [(MARGIN + CELLSIZE) * x + MARGIN, 
                     (MARGIN + CELLSIZE) * y + MARGIN, 
                     CELLSIZE, CELLSIZE])
 
-    def create_world(self):
+    def create_canvas(self):
+        """Create initial canvas grid."""
         grid = []
         for y in range(0, HEIGHT):
             grid.append([])
@@ -52,7 +56,7 @@ class World:
 
 def main(args):
 
-    world = World()
+    canvas = Canvas()
     clock = pygame.time.Clock()
 
     running = True
@@ -62,24 +66,24 @@ def main(args):
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                world.place_critter(new_world)
-                world.update_world(new_world)
+                canvas.place_critter(new_canvas)
+                canvas.update_canvas(new_canvas)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     sim_start = True
                 elif event.key == pygame.K_SPACE:
                     sim_start = False
                     screen.fill(BACKGROUND)
-                    new_world = world.create_world()
-                    world.update_world(new_world)
+                    new_canvas = canvas.create_canvas()
+                    canvas.update_canvas(new_canvas)
                     ticks = args.num_ticks
 
         if sim_start and ticks > 0:
             for bit in Bit.instances:
-                bit.growth_calculate(new_world)
+                bit.growth_calculate(new_canvas)
             for bit in Bit.instances:
-                bit.growth(new_world)
-            world.update_world(new_world)
+                bit.growth(new_canvas)
+            canvas.update_canvas(new_canvas)
             ticks -= 1
 
         pygame.display.flip()
@@ -89,6 +93,7 @@ def main(args):
     quit()
 
 def parse_arguments():
+    """Setup argument parser for user-edited simulation."""
     parser = argparse.ArgumentParser(description = "Conway's Game of Life: Cellular Automata")
     parser.add_argument('-t', '--num_ticks', help = "Runtime length. (Default: 1000)", default = 1000, type = int)
     parser.add_argument('-fps', '--framerate', help = "Framerate (Default: 10)", default = 10, type = int)
