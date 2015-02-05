@@ -14,9 +14,8 @@ class Bit:
 
     def check_adjacent(self, grid):
         """
-        Create dictionary of all adjacent cells contents, adjusting 
-            for horizontal and vertical wrap-around.
-        Dictionary contents are either 0 (empty) or 1 (full).
+        Create growth value from scan of all adjacent cell contents, 
+        adjusting for horizontal and vertical wrap-around.
         """
         results = 0
         for x, y in [(self.x + i, self.y + j) for i in (-1, 0, 1) for j in (-1, 0, 1) if i != 0 or j != 0]:
@@ -40,10 +39,10 @@ class Bit:
         """
         Cellular events based on bit growth value.
         If cell is currently filled:
-            Value larger than 3 or less than 2 causes cell to die.
-            Value of exactly 3 causes cell to persist.
+        | Value > 3 or < 2 causes cell to die.
+        | Value of exactly 3 causes cell to persist.
         If cell is currently empty:
-            Value of exactly 3 causes cell to become alive.
+        | Value of exactly 3 causes cell to become alive.
         """
         if grid[self.x][self.y] == 1:
             if self.growth_value < 2:

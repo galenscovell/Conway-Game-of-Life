@@ -24,7 +24,7 @@ class Canvas:
     """Bit simulation canvas."""
 
     def place_critter(self, grid):
-        """User input to select beginning bit locations."""
+        """New bit at user mouse location on click event."""
         pos = pygame.mouse.get_pos()
         column = pos[0] // (CELLSIZE + MARGIN)
         row = pos[1] // (CELLSIZE + MARGIN)
