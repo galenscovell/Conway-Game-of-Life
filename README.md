@@ -1,4 +1,4 @@
-![alt tag](http://galenscovell.github.io/css/pics/cgol.png)
+<img src='http://galenscovell.github.io/css/pics/cgol.png' width=600px />
 
 Conway-Game-of-Life
 ===================
