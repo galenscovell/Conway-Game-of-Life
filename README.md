@@ -1,3 +1,5 @@
+![alt tag](http://galenscovell.github.io/css/pics/cgol.png)
+
 Conway-Game-of-Life
 ===================
 
