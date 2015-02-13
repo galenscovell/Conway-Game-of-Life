@@ -1,9 +1,9 @@
-<img src='http://galenscovell.github.io/css/pics/cgol.png' width=600px />
+<img src='http://galenscovell.github.io/css/pics/cgol.png' width=500px />
 
-Conway-Game-of-Life
+Conway's Game of Life
 ===================
 
-Cellular Automata simulation implementation using Python and pyGame.
+Cellular automata simulation implemented with Python.
 
 <b>Description:</b>
 <blockquote>The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</blockquote>
