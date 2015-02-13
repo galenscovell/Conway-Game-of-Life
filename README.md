@@ -18,9 +18,9 @@ Cellular automata simulation implemented with Python.
 <b>Installing Unofficial pygame for Python 3.4:</b>
 * Save .whl file from above to somewhere you'll remember
 * Open a terminal
-* Enter: 'pip install wheel' (without quotes)
+* <blockquote>pip install wheel</blockquote>
 * Navigate to the previous directory with .whl file
-* Enter: 'pip install some-package.whl' (without quotes)
+* <blockquote>pip install package_name.whl</blockquote>
 
 <b>Usage:</b>
 <blockquote><b>python base.py</b> [ -h ] [ -t ] [ -fps ] </blockquote>
