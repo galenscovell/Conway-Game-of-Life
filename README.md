@@ -8,7 +8,7 @@ Cellular automata simulation implemented with Python.
 <b>Description:</b>
 <blockquote>The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</blockquote>
 
-<blockquote>The "game" is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves or, for advanced players, by creating patterns with particular properties.</blockquote>
+<blockquote>The 'game' is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves or, for advanced players, by creating patterns with particular properties.</blockquote>
 
 <b>Requirements:</b>
 * Python 3.4
@@ -25,9 +25,10 @@ Cellular automata simulation implemented with Python.
 <b>Usage:</b>
 <blockquote><b>python base.py</b> [ -h ] [ -t ] [ -fps ] </blockquote>
 
-+ Press [ spacebar ] at any time to create a new, blank grid.
-+ Use the [ mouse and click ] on any open grid space to place a 'bit'.
-+ Press [ enter ] to begin simulation for given amount of 'ticks'.
++ Press [Spacebar] at any time to create a new, blank canvas.
++ Use the mouse and [Left-Click] on any open grid space to place a 'bit'.
++ If clicked space is occupied, the bit will be erased.
++ Press [Enter] to begin simulation for given amount of 'ticks'.
 
 Arguments:
 *  -h, --help 
