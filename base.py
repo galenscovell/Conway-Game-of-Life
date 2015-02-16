@@ -28,7 +28,12 @@ class Canvas:
         pos = pygame.mouse.get_pos()
         column = pos[0] // (CELLSIZE + MARGIN)
         row = pos[1] // (CELLSIZE + MARGIN)
-        grid[row][column] = 1
+        # If position not occupied, place new bit
+        if grid[row][column] == 0:
+            grid[row][column] = 1
+        # If position occupied, erase old bit
+        elif grid[row][column] == 1:
+            grid[row][column] = 0
 
     def update_canvas(self, grid):
         """Redraw canvas after every tick."""
@@ -59,6 +64,11 @@ def main(args):
     canvas = Canvas()
     clock = pygame.time.Clock()
 
+    screen.fill(BACKGROUND)
+    new_canvas = canvas.create_canvas()
+    canvas.update_canvas(new_canvas)
+    ticks = args.num_ticks
+
     running = True
     sim_start = False
     while running:
@@ -70,9 +80,14 @@ def main(args):
                 canvas.update_canvas(new_canvas)
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
+                    # Begin new simulation run
                     sim_start = True
                 elif event.key == pygame.K_SPACE:
+                    # Clear away all bits from previous run
+                    for bit in Bit.instances:
+                        Bit.instances.remove(bit)
                     sim_start = False
+                    # Clear screen and create new canvas
                     screen.fill(BACKGROUND)
                     new_canvas = canvas.create_canvas()
                     canvas.update_canvas(new_canvas)
